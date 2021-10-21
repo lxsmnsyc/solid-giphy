@@ -1,145 +1,70 @@
-# ![solid-headless](/images/banner.png)
+# solid-giphy
 
-## Hi!
+> SolidJS bindings for [giphy](https://developers.giphy.com/docs/sdk#web)
 
-In case you're interested, please Star this repo. The project is still in development, as I aim to implement the [WAI-ARIA Design Patterns and Widgets](https://www.w3.org/TR/wai-aria-practices-1.1/).
+[![NPM](https://img.shields.io/npm/v/solid-giphy.svg)](https://www.npmjs.com/package/solid-giphy) [![JavaScript Style Guide](https://badgen.net/badge/code%20style/airbnb/ff5a5f?icon=airbnb)](https://github.com/airbnb/javascript)[![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=flat-square&logo=codesandbox)](https://codesandbox.io/s/github/LXSMNSYC/solid-giphy/tree/main/examples/simple-example)
 
-Here's the current goals:
+## Install
 
-- `Accordion`
-  - [x] Accessibility
-  - [x] Keyboard Interaction
-  - [x] States
-- `Alert`
-  - [x] Accessibility
-- `Alert Dialog`
-  - [x] Accessibility
-  - [x] Keyboard Interaction
-  - [x] States
-- `Breadcrumb`
-  - [ ] Accessibility
-  - [ ] States
-- `Button`
-  - [x] Accessibility
-  - [x] Keyboard Interaction
-  - [x] States
-- `Button (Toggle)`
-  - [x] Accessibility
-  - [x] Keyboard Interaction
-  - [x] States
-- `Carousel`
-  - [ ] Accessibility
-  - [ ] Keyboard Interaction
-  - [ ] States
-- `Checkbox`
-  - [x] Accessibility
-  - [x] Keyboard Interaction
-  - [x] States
-- `Combobox`
-  - [ ] Accessibility
-  - [ ] Keyboard Interaction
-  - [ ] States
-- `Dialog (Modal)`
-  - [x] Accessibility
-  - [x] Keyboard Interaction
-  - [x] States
-- `Dialog (Popover)`
-  - [x] Accessibility
-  - [x] Keyboard Interaction
-  - [x] States
-- `Disclosure (Show/Hide)`
-  - [x] Accessibility
-  - [x] Keyboard Interaction
-  - [x] States
-- `Feed`
-  - [x] Accessibility
-  - [x] Keyboard Interaction
-  - [x] States
-- `Grid`
-  - [ ] Accessibility
-  - [ ] Keyboard Interaction
-  - [ ] States
-- `Link`
-  - [ ] Accessibility
-  - [ ] Keyboard Interaction
-  - [ ] States
-- `Listbox (Select)`
-  - [x] Accessibility
-  - [x] Keyboard Interaction
-  - [x] States
-- `Listbox (Dropdown)`
-  - [x] Accessibility
-  - [x] Keyboard Interaction
-  - [x] States
-- `Menu`
-  - [x] Accessibility
-  - [x] Keyboard Interaction
-  - [x] States
-- `Radio Group`
-  - [X] Accessibility
-  - [X] Keyboard Interaction
-  - [X] States
-- `Slider`
-  - [ ] Accessibility
-  - [ ] Keyboard Interaction
-  - [ ] States
-- `Slider (Multi)`
-  - [ ] Accessibility
-  - [ ] Keyboard Interaction
-  - [ ] States
-- `Spinbutton`
-  - [ ] Accessibility
-  - [ ] Keyboard Interaction
-  - [ ] States
-- `Table`
-  - [ ] Accessibility
-  - [ ] States
-- `Tabs`
-  - [ ] Accessibility
-  - [ ] Keyboard Interaction
-  - [ ] States
-- `Toolbar`
-  - [x] Accessibility
-  - [x] Keyboard Interaction
-  - [x] States
-- `Tooltip (proposal)`
-  - [ ] Accessibility
-  - [ ] Keyboard Interaction
-  - [ ] States
-- `Tree View`
-  - [ ] Accessibility
-  - [ ] Keyboard Interaction
-  - [ ] States
-- `Tree Grid`
-  - [ ] Accessibility
-  - [ ] Keyboard Interaction
-  - [ ] States
-- `Window Splitter (proposal)`
-  - [ ] Accessibility
-  - [ ] Keyboard Interaction
-  - [ ] States
+```bash
+yarn add solid-giphy
+```
 
-Others:
+## Usage
 
-- `Transition`
-  - [X] States
-- `Toaster`/`Toast`
-  - [X] States
-  - [X] Accessibility
-- `ContextMenu`
-  - [x] States
-  - [x] Keyboard Interaction
-  - [x] Accessibility
+```jsx
+import { createGiphyGrid, giphyGrid } from 'solid-giphy';
 
-## FAQ
+const gf = new GiphyFetch('your Web SDK key')
 
-### Is this the official [HeadlessUI](https://headlessui.dev/) for SolidJS?
+// With directives
+function App() {
+  return (
+    <div
+      use:giphyGrid={{
+        fetchGifs(offset: number) {
+          return gf.trending({ offset, limit: 25 });
+        },
+        width: GRID_WIDTH,
+        column: 3,
+        gutter: 6,
+      }}
+    />
+  );
+}
 
-Uhh, no. I intended to port the original however this is not recognized as the official port for SolidJS. There's also some differences in development path since I intended to implement the WAI-ARIA widgets. The reason is that there seems to be no resolution from the original Headless UI if they're going to implement WAI-ARIA widgets in the first place.
+// With utility
+function App() {
+  const [ref, setRef] = createSignal();
 
-### If this is a port, does it mean it is 100% compatible?
+  createGiphyGrid(ref, {
+    fetchGifs(offset: number) {
+      return gf.trending({ offset, limit: 25 });
+    },
+    width: GRID_WIDTH,
+    column: 3,
+    gutter: 6,
+  });
 
-Kinda. Due to differences in principle between SolidJS and React, the implementation would be different and such, features that are originally found in the original HeadlessUI may be incompatible with the SolidJS version.
+  return <div ref={setRef} />;
+}
+```
+
+Read more on [`@giphy/js-components`](https://github.com/Giphy/giphy-js/tree/master/packages/components). APIs are based from `@giphy/js-components` with minor changes.
+
+### Utilities
+
+- `useGiphyGrid`/`createGiphyGrid`
+- `useGiphyCarousel`/`createGiphyCarousel`
+- `useGiphyGif`/`createGiphyGif`
+- `useGiphyVideo`/`createGiphyVideo`
+
+### Directives
+
+- `giphyGrid`
+- `giphyCarousel`
+- `giphyGif`
+- `giphyVideo`
 
 ## License
 

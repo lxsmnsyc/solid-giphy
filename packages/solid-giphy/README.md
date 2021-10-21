@@ -50,6 +50,8 @@ function App() {
 }
 ```
 
+Read more on [`@giphy/js-components`](https://github.com/Giphy/giphy-js/tree/master/packages/components). APIs are based from `@giphy/js-components` with minor changes.
+
 ### Utilities
 
 - `useGiphyGrid`/`createGiphyGrid`
