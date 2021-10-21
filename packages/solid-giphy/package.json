@@ -1,0 +1,92 @@
+{
+  "name": "solid-giphy",
+  "version": "0.0.0",
+  "types": "dist/types/index.d.ts",
+  "main": "dist/cjs/production/index.ts",
+  "module": "dist/esm/production/index.ts",
+  "exports": {
+    ".": {
+      "development": {
+        "require": "./dist/cjs/development/index.ts",
+        "import": "./dist/esm/development/index.ts"
+      },
+      "require": "./dist/cjs/production/index.ts",
+      "import": "./dist/esm/production/index.ts",
+      "types": "./dist/types/index.d.ts"
+    },
+    "./dev": {
+      "production": {
+        "require": "./dist/cjs/production/index.ts",
+        "import": "./dist/esm/production/index.ts"
+      },
+      "require": "./dist/cjs/development/index.ts",
+      "import": "./dist/esm/development/index.ts",
+      "types": "./dist/types/index.d.ts"
+    },
+    "./esm": {
+      "development": "./dist/esm/development/index.ts",
+      "production": "./dist/esm/production/index.ts",
+      "default": "./dist/esm/production/index.ts",
+      "types": "./dist/types/index.d.ts"
+    },
+    "./cjs": {
+      "development": "./dist/cjs/development/index.ts",
+      "production": "./dist/cjs/production/index.ts",
+      "default": "./dist/cjs/production/index.ts",
+      "types": "./dist/types/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "license": "MIT",
+  "keywords": [
+    "pridepack"
+  ],
+  "devDependencies": {
+    "@giphy/js-fetch-api": "^4.1.2",
+    "@types/node": "^16.10.3",
+    "eslint": "^7.32.0",
+    "eslint-config-lxsmnsyc": "^0.3.0",
+    "pridepack": "1.0.3",
+    "solid-js": "^1.1.5",
+    "tslib": "^2.3.1",
+    "typescript": "^4.4.3"
+  },
+  "peerDependencies": {
+    "solid-js": "^1.1.5",
+    "@giphy/js-fetch-api": "^4.1.2"
+  },
+  "dependencies": {
+    "@giphy/js-components": "^5.1.6"
+  },
+  "private": false,
+  "description": "SolidJS bindings for the GIPHY SDK",
+  "repository": {
+    "url": "https://github.com/lxsmnsyc/solid-giphy",
+    "type": "git"
+  },
+  "homepage": "https://github.com/lxsmnsyc/solid-giphy/tree/main/packages/solid-giphy",
+  "bugs": {
+    "url": "https://github.com/lxsmnsyc/solid-giphy/issues"
+  },
+  "author": "Alexis Munsayac",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "prepublishOnly": "pridepack clean && pridepack build",
+    "build": "pridepack build",
+    "type-check": "pridepack check",
+    "lint": "pridepack lint",
+    "test": "pridepack test --passWithNoTests",
+    "clean": "pridepack clean",
+    "watch": "pridepack watch",
+    "start": "pridepack start",
+    "dev": "pridepack dev"
+  }
+}
