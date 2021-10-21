@@ -49,6 +49,7 @@
   ],
   "devDependencies": {
     "@giphy/js-fetch-api": "^4.1.2",
+    "@types/throttle-debounce": "^2.1.0",
     "@types/node": "^16.10.3",
     "eslint": "^7.32.0",
     "eslint-config-lxsmnsyc": "^0.3.0",
