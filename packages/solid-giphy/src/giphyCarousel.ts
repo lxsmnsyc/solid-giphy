@@ -3,7 +3,7 @@ import { createEffect } from 'solid-js';
 
 export default function giphyCarousel<T extends HTMLElement>(
   el: T,
-  options: Carousel['props'],
+  options: () => Carousel['props'],
 ): void {
-  createEffect(() => renderCarousel(options, el));
+  createEffect(() => renderCarousel(options(), el));
 }

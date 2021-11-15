@@ -1,11 +1,10 @@
+import { renderVideo } from '@giphy/js-components';
 import { createEffect } from 'solid-js';
-import giphyVideo, { VideoProps } from './giphyVideo';
+import { VideoProps } from './giphyVideo';
 
 export default function useGiphyVideo<T extends HTMLElement>(
   el: () => T,
   options: VideoProps,
 ): void {
-  createEffect(() => {
-    giphyVideo(el(), options);
-  });
+  createEffect(() => renderVideo(options, el()));
 }

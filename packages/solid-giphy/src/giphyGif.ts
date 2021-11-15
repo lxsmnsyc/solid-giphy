@@ -6,7 +6,7 @@ export type GifProps = ParamType<typeof renderGif>;
 
 export default function giphyGif<T extends HTMLElement>(
   el: T,
-  options: GifProps,
+  options: () => GifProps,
 ): void {
-  createEffect(() => renderGif(options, el));
+  createEffect(() => renderGif(options(), el));
 }

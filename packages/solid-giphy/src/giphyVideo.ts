@@ -6,7 +6,7 @@ export type VideoProps = ParamType<typeof renderVideo>;
 
 export default function giphyVideo<T extends HTMLElement>(
   el: T,
-  options: VideoProps,
+  options: () => VideoProps,
 ): void {
-  createEffect(() => renderVideo(options, el));
+  createEffect(() => renderVideo(options(), el));
 }
